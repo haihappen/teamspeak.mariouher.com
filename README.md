@@ -13,24 +13,4 @@ rm teamspeak3-server_linux*.tar.gz
 
 ## Upstart
 
-Save following upstart-script into `/etc/init/teamspeak3.conf`
-
-```
-description     "Teamspeak 3 Server"
-start on (net-device-up
-          and local-filesystems
-          and runlevel [2345])
-stop on runlevel [016]
-
-respawn
-
-env USER=teamspeak3
-env DIR=/home/teamspeak3/teamspeak3-server_linux-amd64
-env BIN=ts3server_linux_amd64
-
-script
-cd $DIR
-export LD_LIBRARY_PATH=".:$LD_LIBRARY_PATH"
-exec su $USER -c "$DIR$BIN"
-end script
-```
+Copy `teamspeak3.conf` into `/etc/init`.
