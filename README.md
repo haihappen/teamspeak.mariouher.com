@@ -1,4 +1,4 @@
-# ts.mariouher.com
+# teamspeak.mariouher.com
 
 ## Setup
 
