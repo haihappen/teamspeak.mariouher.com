@@ -16,6 +16,8 @@ Copy `teamspeak3.conf` into `/etc/init`.
 ## Usage
 
 ```sh
+ssh root@teamspeak.mariouher.com -i ~/.ssh/uherdotmarioatgmaildotcom
+
 [start|stop|restart] teamspeak3
 ```
 
