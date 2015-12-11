@@ -29,6 +29,30 @@ docker build -t haihappen/teamspeak .
 docker run -p=9987:9987/udp -p=10011:10011 -p=30033:30033 --name=teamspeak -v /data/teamspeak/logs:/data/teamspeak/logs haihappen/teamspeak
 ```
 
+## Updating
+
+1. Download the latest TeamSpeak version from http://www.teamspeak.com/downloads#server
+
+    ```sh
+    curl -LO http://dl.4players.de/ts/releases/3.0.11.4/teamspeak3-server_linux-amd64-3.0.11.4.tar.gz
+    ```
+    
+2. Rebuild the docker image and push it to hub.docker.com:
+
+    ```sh
+    docker build -t haihappen/teamspeak .
+    docker push haihappen/teamspeak
+	```
+	
+3. Recreate the container:
+
+   ```sh
+   docker rm -f $(docker ps -qf name=teamspeak)
+   docker run -p=9987:9987/udp -p=10011:10011 -p=30033:30033 --rm=true --name=teamspeak -v /data/teamspeak/logs:/data/teamspeak/logs haihappen/teamspeak
+   ```
+
+
+
 ## License (The MIT License)
 
 Copyright (c) 2015 Mario Uher
