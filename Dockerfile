@@ -1,4 +1,5 @@
 FROM ubuntu:14.04
+MAINTAINER Mario Uher <uher.mario@gmail.com>
 
 WORKDIR /data/teamspeak
 
