@@ -17,16 +17,16 @@ For production use some cloud server is needed, in this case [DigitalOcean](http
 First setup the docker host, and create the logs directory:
 
 ```sh
-docker-machine create --driver digitalocean --digitalocean-access-token TOKEN --digitalocean-region ams3 teamspeak.mariouher.com
-docker-machine ssh teamspeak.mariouher.com mkdir -p /data/teamspeak/logs
+docker-machine create --driver digitalocean --digitalocean-access-token TOKEN --digitalocean-region ams3 NAME
+docker-machine ssh NAME mkdir -p /data/teamspeak
 ```
 
 Afterwards the docker image must be build and started on this host:
 
 ```sh
-$(docker-machine env teamspeak.mariouher.com)
+$(docker-machine env NAME)
 docker build -t haihappen/teamspeak .
-docker run -p=9987:9987/udp -p=10011:10011 -p=30033:30033 --name=teamspeak -v /data/teamspeak:/data/teamspeak haihappen/teamspeak
+docker run -p=9987:9987/udp -p=10011:10011 -p=30033:30033 --name=teamspeak -v /data/teamspeak:/home/data haihappen/teamspeak
 ```
 
 
@@ -43,7 +43,7 @@ docker run -p=9987:9987/udp -p=10011:10011 -p=30033:30033 --name=teamspeak -v /d
 
    ```sh
    docker rm -f $(docker ps -qf name=teamspeak)
-   docker run -p=9987:9987/udp -p=10011:10011 -p=30033:30033 --name=teamspeak -v /data/teamspeak:/data/teamspeak haihappen/teamspeak
+   docker run -p=9987:9987/udp -p=10011:10011 -p=30033:30033 --name=teamspeak -v /data/teamspeak:/home/data haihappen/teamspeak
    ```
 
 
